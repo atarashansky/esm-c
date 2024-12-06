@@ -60,7 +60,7 @@ class MultiHeadAttention(nn.Module):
 
         if seq_id is not None:
             # Where True, enable participation in attention.
-            if not isinstance(seq_id, torch.tensor):
+            if not isinstance(seq_id, torch.Tensor):
                 seq_id = torch.tensor(seq_id)
                 
             mask_BLL = seq_id.unsqueeze(-1) == seq_id.unsqueeze(-2)
