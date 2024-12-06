@@ -90,6 +90,7 @@ class ESMC(nn.Module, ESMCInferenceClient):
 
         """
         if sequence_id is None:
+            print(sequence_tokens)
             sequence_id = sequence_tokens == '<pad>'
             print(sequence_id)
 
