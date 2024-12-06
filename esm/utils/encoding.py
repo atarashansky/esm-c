@@ -50,7 +50,7 @@ def tokenize_sequence(
     sequence_tokenizer: EsmSequenceTokenizer,
     add_special_tokens: bool = True,
 ) -> torch.Tensor:
-    sequence = sequence.replace(C.MASK_STR_SHORT, sequence_tokenizer.mask_token)
+    sequence = sequence.replace(C.MASK_STR_SHORT, "<mask>")
     sequence_tokens = sequence_tokenizer.encode(
         sequence, add_special_tokens=add_special_tokens
     )
