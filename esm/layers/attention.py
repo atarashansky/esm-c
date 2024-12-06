@@ -67,7 +67,7 @@ class MultiHeadAttention(nn.Module):
             mask_BHLL = mask_BLL.unsqueeze(1)
 
             context_BHLD = F.scaled_dot_product_attention(
-                query_BHLD, key_BHLD, value_BHLD, mask_BHLL.contiguous()
+                query_BHLD.contiguous(), key_BHLD.contiguous(), value_BHLD.contiguous(), mask_BHLL.contiguous()
             )
         else:
             # Shortcut, if we don't use attention biases then torch
