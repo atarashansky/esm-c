@@ -91,6 +91,7 @@ class ESMC(nn.Module, ESMCInferenceClient):
         """
         if sequence_id is None:
             sequence_id = sequence_tokens == '<pad>'
+            print(sequence_id)
 
         x = self.embed(sequence_tokens)
         x, _ = self.transformer(x, sequence_id=sequence_id)
