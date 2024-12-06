@@ -60,14 +60,11 @@ class MultiHeadAttention(nn.Module):
 
         if seq_id is not None:
             # Where True, enable participation in attention.
-            if not isinstance(seq_id, torch.Tensor):
-                seq_id = torch.tensor([seq_id], device=x.device)
-                
             mask_BLL = seq_id.unsqueeze(-1) == seq_id.unsqueeze(-2)
             mask_BHLL = mask_BLL.unsqueeze(1)
 
             context_BHLD = F.scaled_dot_product_attention(
-                query_BHLD.contiguous(), key_BHLD.contiguous(), value_BHLD.contiguous(), mask_BHLL.contiguous()
+                query_BHLD, key_BHLD, value_BHLD, mask_BHLL
             )
         else:
             # Shortcut, if we don't use attention biases then torch
